@@ -1,2 +1,2 @@
-# semantic-tabs [![CodeQL](https://github.com/haneenmahd/semantic-tabs/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/haneenmahd/semantic-tabs/actions/workflows/codeql-analysis.yml)
+# semantic-tabs [![CodeQL](https://github.com/haneenmahd/semantic-tabs/actions/workflows/codeql-analysis.yml/badge.svg)](https://github.com/haneenmahd/semantic-tabs/actions/workflows/codeql-analysis.yml) [![Greetings](https://github.com/haneenmahd/semantic-tabs/actions/workflows/greetings.yml/badge.svg)](https://github.com/haneenmahd/semantic-tabs/actions/workflows/greetings.yml)
 Create beautiful and custom tabs with ease.
