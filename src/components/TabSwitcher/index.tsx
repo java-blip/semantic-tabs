@@ -10,20 +10,20 @@ const TabBarComponent = styled.nav`
   white-space: nowrap;
   box-sizing: border-box;
   border-bottom: 2px solid ${(props: {
-      defaultBorderColor?: string
-  }) => props.defaultBorderColor};
+    defaultBorderColor?: string
+}) => props.defaultBorderColor};
 `;
 
-const TabIndicator = styled.div`${(props: { 
-      height: number | string,
-      width: number | string,
-      background: string,
-      borderRadius?: number | string,
-      className?: string | object | {},
-      borderSize?: string,
-      borderColor?: string,
-      borderStyle?: string | "dashed" | "dotted" | "double" | "groove" | "hidden" | "inherit" | "initial" | "inset" | "none" | "outset" | "ridge" | "solid" | "unset"
-    }) =>
+const TabIndicator = styled.div`${(props: {
+    height: number | string,
+    width: number | string,
+    background: string,
+    borderRadius?: number | string,
+    className?: string | object | {},
+    borderSize?: string,
+    borderColor?: string,
+    borderStyle?: string | "dashed" | "dotted" | "double" | "groove" | "hidden" | "inherit" | "initial" | "inset" | "none" | "outset" | "ridge" | "solid" | "unset"
+}) =>
     `height: ${typeof props.height === "number" ? props.height + "px" : props.height};
      width: ${typeof props.width === "number" ? props.width + "px" : props.width};
      borderRadius: ${typeof props.borderRadius === "number" ? props.borderRadius + "px" : props.borderRadius};
@@ -31,14 +31,11 @@ const TabIndicator = styled.div`${(props: {
      borderStyle: ${props.borderStyle};
      borderColor: ${props.borderColor};
      background: ${props.background};`
-};
+    };
 `;
 
 interface IProps {
-    items: [{
-        label: string,
-        href: string | object
-    }]
+    items: Array<{ label: string, href?: string }>
 };
 
 interface IState {
@@ -92,15 +89,16 @@ class TabBar extends Component<IProps, IState> {
     render() {
         const { items } = this.props;
         const { activeItem } = this.state;
-        return(
+        return (
             <TabBarComponent ref={this.containerRef}>
-                {items.map((item, i) => (
+                {items.map<JSX.Element>((item, i) => (
                     <TabItem
-                     className={classNames('', {
-                         'is-active': activeItem === i
-                     })} 
-                     key={item.label}>
-                         {item.label}
+                        className={classNames('', {
+                            'is-active': activeItem === i
+                        })}
+                        href={item.href}
+                        key={i}>
+                        {item.label}
                     </TabItem>
                 ))}
                 <TabIndicator height="5px" width="10px" borderRadius="30px" background="#2c2c2c" />

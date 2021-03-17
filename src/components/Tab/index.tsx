@@ -56,16 +56,17 @@ const Tab = styled.div`
 `;
 
 const TabItem = (props: {
-    href: string | object,
-    about?: string,
+    href?: string,
     text?: string,
-    className?: any,
-    key?: string
-}) => <Tab className={props.className}>
-        <a href={`${props.href}`} rel="noreferrer" about={props.about}>
+    className?: string,
+    children: React.ReactNode
+}) => (
+    <Tab className={props.className}>
+        <a href={`${props.href}`} rel="noreferrer">
             {props.text}
         </a>
-    </Tab>;
+    </Tab>
+);
 
 export { TabItem };
 export default TabItem;
