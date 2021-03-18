@@ -1,7 +1,8 @@
 import React from "react";
-import styled, { keyframes } from "styled-components";
+import { NonReactStatics } from "hoist-non-react-statics";
+import styled, { keyframes, StyledComponent, Keyframes } from "styled-components";
 
-const slideInUp = keyframes`
+const slideInUp: Keyframes = keyframes`
   from {
       tranform: translate3d(0, 10px, 0);
       opacity: 0;
@@ -12,7 +13,7 @@ const slideInUp = keyframes`
   }
 `;
 
-const slideInDown = keyframes`
+const slideInDown: Keyframes = keyframes`
   from {
       tranform: translate3d(0, 10px, 0);
       opacity: 0;
@@ -23,15 +24,16 @@ const slideInDown = keyframes`
   }
 `;
 
-const Tab = styled.div`
+const Tab: String & StyledComponent<"div", any,
+    { animation?: string | undefined; }, never> & NonReactStatics<never, {}> = styled.div`
   display: inline-block;
   positon: relative;
   animation: ${(props: {
-    animation?: string
-}) => props.animation === "SlideInUp" ?
-            slideInUp : props.animation === "SlideInDown" ?
-                slideInDown : slideInUp
-    };
+        animation?: string
+    }) => props.animation === "SlideInUp" ?
+                slideInUp : props.animation === "SlideInDown" ?
+                    slideInDown : slideInUp
+        };
   & a {
       backface-visibility: hidden;
       position: relative;
@@ -55,18 +57,27 @@ const Tab = styled.div`
   }
 `;
 
-const TabItem = (props: {
+interface IProps {
+    className?: string,
     href?: string,
     text?: string,
-    className?: string,
-    children: React.ReactNode
-}) => (
-    <Tab className={props.className}>
-        <a href={`${props.href}`} rel="noreferrer">
-            {props.text}
-        </a>
-    </Tab>
-);
+    children: React.ReactNode,
+    linkAbout?: string
+};
+
+const TabItem = (props: IProps) => {
+    return(
+        <Tab className={props.className}>
+            <a 
+              href={props.href}
+              rel="noreferrer"
+              about={props.linkAbout}>
+                  {props.text}
+                  {props.children}
+              </a>
+        </Tab>
+    );
+}
 
 export { TabItem };
 export default TabItem;

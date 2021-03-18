@@ -1,9 +1,13 @@
 import React, { Component, createRef } from "react";
 import { TabItem } from "../Tab";
-import styled from "styled-components";
+import { NonReactStatics } from "hoist-non-react-statics";
+import styled, { StyledComponent } from "styled-components";
 import classNames from "classnames";
 
-const TabBarComponent = styled.nav`
+
+const TabBarComponent: String & StyledComponent<"nav", any, {
+    defaultBorderColor?: string
+}, never> & NonReactStatics<never, {}> = styled.nav`
   color: white;
   font-weight: 400;
   position: relative;
@@ -14,7 +18,16 @@ const TabBarComponent = styled.nav`
 }) => props.defaultBorderColor};
 `;
 
-const TabIndicator = styled.div`${(props: {
+const TabIndicator: String & StyledComponent<"div", any, {
+    height: number | string,
+    width: number | string,
+    background: string,
+    borderRadius?: number | string,
+    className?: string | object | {},
+    borderSize?: string,
+    borderColor?: string,
+    borderStyle?: string | "dashed" | "dotted" | "double" | "groove" | "hidden" | "inherit" | "initial" | "inset" | "none" | "outset" | "ridge" | "solid" | "unset"
+}, never> & NonReactStatics<never, {}> = styled.div`${(props: {
     height: number | string,
     width: number | string,
     background: string,
@@ -101,7 +114,11 @@ class TabBar extends Component<IProps, IState> {
                         {item.label}
                     </TabItem>
                 ))}
-                <TabIndicator height="5px" width="10px" borderRadius="30px" background="#2c2c2c" />
+                <TabIndicator
+                    height="5px"
+                    width="10px"
+                    borderRadius="30px"
+                    background="#2c2c2c" />
             </TabBarComponent>
         );
     }
